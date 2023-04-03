@@ -67,8 +67,6 @@ const UserSchema = new mongoose.Schema({
     Pincode:{
       type:Number,
       required:true,
-      min:6,
-      max:6
     }
     }
   ],
@@ -80,7 +78,6 @@ const UserSchema = new mongoose.Schema({
     type: String,
     enum:['active','inactive','onhold','pending'],
     default: 'active',
-    select: false,
   },
 },{timestamps: true});
 

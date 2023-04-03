@@ -97,14 +97,15 @@ exports.MultipleCreateAccount = CatchAsyncHandler((req, res, next) => {
       address:[{
          city:req.body.city,
          state:req.body.state,
-         office:req.body.office,
+         Office:req.body.office,
          Building:req.body.Building,
          Sector:req.body.Sector,
-         Pincode:req.body.Pincode
+         Pincode:parseInt(req.body.Pincode)
    }],
    GST:req.body.gstNumber,
    };
 
+   console.log(data,"data")
    const student = new User(data);
    student.save(async(err, doc) => {
       if (err) return next(new Error(`${err.message}`, 400));
