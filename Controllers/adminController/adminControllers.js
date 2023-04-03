@@ -117,3 +117,5 @@ exports.MultipleCreateAccount = CatchAsyncHandler((req, res, next) => {
 
 exports.AllGetMercentData=FactorHandler.getAll(User)
 exports.GetMercentdata=FactorHandler.getOne(User)
+exports.UpdateMerChantdata =FactorHandler.updateOne(User)
+exports.UpdateMerChantdataStatus=FactorHandler.updateOne(User)

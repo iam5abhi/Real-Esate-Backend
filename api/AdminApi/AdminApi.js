@@ -21,8 +21,9 @@ adminrouter
         .route('/add-merchant')
         .post(admin.MultipleCreateAccount)
         .get(admin.AllGetMercentData)
-// adminrouter.route('/get-update-student-status/:id').patch(admin.UpdateStudentStatus)
-adminrouter.route('/get-merchant/:id').get(admin.GetMercentdata)
+adminrouter.route('/get-update-student-status/:id').patch(admin.UpdateMerChantdataStatus)
+adminrouter.route('/get-merchant/:id').get(admin.GetMercentdata).patch(admin.UpdateMerChantdata)
+
 
 
 
