@@ -16,13 +16,13 @@ adminrouter.route("/change-password").patch(isAuthenticated,admin.UpdatePassword
 
 
 
-// //Student
-// adminrouter
-//         .route('/student-account')
-//         .post(admin.MultipleCreateAccount)
-//         .get(admin.getAllStudent)
+
+adminrouter
+        .route('/add-merchant')
+        .post(admin.MultipleCreateAccount)
+        .get(admin.AllGetMercentData)
 // adminrouter.route('/get-update-student-status/:id').patch(admin.UpdateStudentStatus)
-// adminrouter.route('/get-student/:id').get(admin.getProfile)
+adminrouter.route('/get-merchant/:id').get(admin.GetMercentdata)
 
 
 

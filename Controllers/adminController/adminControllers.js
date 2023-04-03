@@ -5,6 +5,7 @@ const createSendToken = require("../../suscribers/createSendToken");
 const base64 = require("base-64");
 const FactorHandler =require('../../FactoryHandler/factoryhandler')
 const {REGISTRATION_SUCCESS,PASSWORD_NOT_MATCH,COMPARE_PASSWORD_USING_DB,LOGIN_SUCCESS,USER_ALREADY_EXIST} =require('../../ConstandMessage/Message')
+const User =require('../../Models/User/UserSchema')
 
 const {getDate}=require('../../Features/Date/getDate')
 const CatchAsyncHandler =require('../../Middleware/Error/CatchAsyncHandler')
@@ -92,47 +93,26 @@ exports.MultipleCreateAccount = CatchAsyncHandler((req, res, next) => {
       name: req.body.name,
       email: req.body.email,
       phoneNumber: req.body.phoneNumber,
-      password: `${req.body.name}@123`,
-      confirmPassword: `${req.body.name}@123`,
-      role:req.body.role,
-      city:req.body.city,
-      state:req.body.state
+      Alternate_Phone_Number:req.body.Alternate_Phone_Number,
+      address:[{
+         city:req.body.city,
+         state:req.body.state,
+         office:req.body.office,
+         Building:req.body.Building,
+         Sector:req.body.Sector,
+         Pincode:req.body.Pincode
+   }],
+   GST:req.body.gstNumber,
    };
 
    const student = new User(data);
    student.save(async(err, doc) => {
       if (err) return next(new Error(`${err.message}`, 400));
-      if(doc.role=="student"){
-        const student = await StudentProfile.create({StudentId:doc._id})
-         res.status(200).send({
-            message: REGISTRATION_SUCCESS,
-            succes: true,
-            name: doc.name,
-            email: doc.email,
-            phoneNumber: doc.phoneNumber,
-            role:doc.role
-         });
-      }else if(doc.role=="mentor"){
-         const mentor =await MentorProfile.create({MentorId:doc._id,organization:'64004e22699d2944db0f0cc3'})
-         res.status(200).send({
-            message: REGISTRATION_SUCCESS,
-            succes: true,
-            name: doc.name,
-            email: doc.email,
-            phoneNumber: doc.phoneNumber,
-            role:doc.role
-         });
-      }else{
-         const mentor =await MsMeProfile.create({CompanyId:doc._id})
-         res.status(200).send({
-            message: REGISTRATION_SUCCESS,
-            succes: true,
-            name: doc.name,
-            email: doc.email,
-            phoneNumber: doc.phoneNumber,
-            role:doc.role
-         });
-      }
-     
-   });
-});
+       res.status(200).send(doc)
+   })
+    
+})
+
+
+exports.AllGetMercentData=FactorHandler.getAll(User)
+exports.GetMercentdata=FactorHandler.getOne(User)

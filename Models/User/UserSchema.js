@@ -35,42 +35,47 @@ const UserSchema = new mongoose.Schema({
     minlength: 10,
     maxlength: 12,
   },
-  role:{
-    type:String,
-    enum:['student','mentor','campus','enterpricess'],
-    default:'student'
+  Alternate_Phone_Number:{
+    type: Number,
+    required: [true, "Please Provide your Phone Number"],
+    unique: [true,"This Phone Number is Already exits && Please fill to an another Phone Number"],
+    minlength: 10,
+    maxlength: 12,
   },
-  password: {
-    type: String,
-    required: [true, "Please provide a  password"],
-    minlength: 5,
-    select: false,
-  },
-  confirmPassword: {
-    type: String,
-    required: [true, "Please confirm your password"],
-    minlength: 5,
-    validate: {
-      validator: function (Cpassword) {
-        return Cpassword === this.password;
+  address:[
+    {
+      city:{
+        type:String,
+        // required:true 
       },
-      message: "Your password and confirmation password do not match",
+    state:{
+        type:String,
+        // required:true 
     },
-  },
-  city:{
+    Office:{
+        type:String,
+        required:true 
+      },
+    Building:{
+      type:String,
+      required:true 
+    },
+    Sector:{
+      type:String,
+      required:true 
+    },
+    Pincode:{
+      type:Number,
+      required:true,
+      min:6,
+      max:6
+    }
+    }
+  ],
+  GST:{
     type:String,
     required:true 
   },
- state:{
-    type:String,
-    required:true 
- },
- lastLogin: {
-  type: Date,
-},
-  PasswordChangedAt: Date,
-  PasswordResetToken: String,
-  PasswordResetExpires: Date,
   status: {
     type: String,
     enum:['active','inactive','onhold','pending'],
@@ -87,38 +92,38 @@ UserSchema.pre("save", async function (next) {
   next();
 });
 
-UserSchema.pre("save", async function (next) {
-  if (!this.isModified("password") || this.isNew) return next();
-  this.PasswordChangedAt = Date.now() - 1000;
-  next();
-});
+// UserSchema.pre("save", async function (next) {
+//   if (!this.isModified("password") || this.isNew) return next();
+//   this.PasswordChangedAt = Date.now() - 1000;
+//   next();
+// });
 
-//Compase the Password
-UserSchema.methods.comparepassword=async function(password){return await bcrypt.compare(password,this.password)}
-
-
+// //Compase the Password
+// UserSchema.methods.comparepassword=async function(password){return await bcrypt.compare(password,this.password)}
 
 
-UserSchema.methods.changePasswordAfter = function (JWTTimestamp) {
-  if (this.PasswordChangedAt) {
-    const ChangeTimestamp = parseInt(
-      this.PasswordChangedAt.getTime() / 100000,
-      10
-    );
-    return JWTTimestamp < ChangeTimestamp;
-  }
-  return false;
-};
 
-UserSchema.methods.createPasswordResetToken = function () {
-  const resetToken = crypto.randomBytes(32).toString("hex");
-  this.PasswordResetToken = crypto
-    .createHash("sha256")
-    .update(resetToken)
-    .digest("hex");
-  this.PasswordResetExpires = Date.now() + 10 * 60 * 1000;
-  return resetToken;
-};
+
+// UserSchema.methods.changePasswordAfter = function (JWTTimestamp) {
+//   if (this.PasswordChangedAt) {
+//     const ChangeTimestamp = parseInt(
+//       this.PasswordChangedAt.getTime() / 100000,
+//       10
+//     );
+//     return JWTTimestamp < ChangeTimestamp;
+//   }
+//   return false;
+// };
+
+// UserSchema.methods.createPasswordResetToken = function () {
+//   const resetToken = crypto.randomBytes(32).toString("hex");
+//   this.PasswordResetToken = crypto
+//     .createHash("sha256")
+//     .update(resetToken)
+//     .digest("hex");
+//   this.PasswordResetExpires = Date.now() + 10 * 60 * 1000;
+//   return resetToken;
+// };
 
 const User = new mongoose.model("User", UserSchema);
 
