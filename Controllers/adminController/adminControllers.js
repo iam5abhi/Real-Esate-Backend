@@ -7,8 +7,9 @@ const FactorHandler =require('../../FactoryHandler/factoryhandler')
 const {REGISTRATION_SUCCESS,PASSWORD_NOT_MATCH,COMPARE_PASSWORD_USING_DB,LOGIN_SUCCESS,USER_ALREADY_EXIST} =require('../../ConstandMessage/Message')
 const User =require('../../Models/User/UserSchema')
 
-const {getDate}=require('../../Features/Date/getDate')
+const {getDate,expireDate}=require('../../Features/Date/getDate')
 const CatchAsyncHandler =require('../../Middleware/Error/CatchAsyncHandler')
+const PaymentModel=require('../../Models/Payment/Payment')
 
 //  exports.CreateAccount = (req, res, next) => {
 //     const errors = validationResult(req);
@@ -105,7 +106,7 @@ exports.MultipleCreateAccount = CatchAsyncHandler((req, res, next) => {
    GST:req.body.gstNumber,
    };
 
-   console.log(data,"data")
+
    const student = new User(data);
    student.save(async(err, doc) => {
       if (err) return next(new Error(`${err.message}`, 400));
@@ -119,3 +120,20 @@ exports.AllGetMercentData=FactorHandler.getAll(User)
 exports.GetMercentdata=FactorHandler.getOne(User)
 exports.UpdateMerChantdata =FactorHandler.updateOne(User)
 exports.UpdateMerChantdataStatus=FactorHandler.updateOne(User)
+
+
+
+exports.getAdminSuscription =async(req,res,next)=>{
+  const payment={
+    Merchant:req.params.id,
+    paymentId: Math.floor(1000000000 + Math.random() * 900000000000),
+    amount:349,
+    plan:'Sliver',
+    startDate:getDate(0),
+    endDate:expireDate(0)
+  }
+   const paymentDone =await PaymentModel.create(payment)
+   if(!paymentDone) return next(new Error('Your Payment Decline',400))
+   res.status(200).send({message:'Payment Done Sucessfully',data:paymentDone})
+}
+

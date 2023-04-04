@@ -1,3 +1,4 @@
+
 require('dotenv').config({path:'./Config/config.env'})
 const app =require('./app')
 
@@ -20,3 +21,4 @@ app.listen(PORT,()=>{
     //  start the server
     console.log(`Server Running here 👉 http://localhost:${PORT}`)
 })
+

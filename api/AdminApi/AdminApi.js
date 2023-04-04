@@ -18,11 +18,13 @@ adminrouter.route("/change-password").patch(isAuthenticated,admin.UpdatePassword
 
 
 adminrouter
-        .route('/add-merchant')
-        .post(admin.MultipleCreateAccount)
-        .get(admin.AllGetMercentData)
-adminrouter.route('/get-update-student-status/:id').patch(admin.UpdateMerChantdataStatus)
-adminrouter.route('/get-merchant/:id').get(admin.GetMercentdata).patch(admin.UpdateMerChantdata)
+        .route('/merchant')
+        .post(isAuthenticated,admin.MultipleCreateAccount)
+        .get(isAuthenticated,admin.AllGetMercentData)
+adminrouter.route('/get-update-student-status/:id').patch(isAuthenticated,admin.UpdateMerChantdataStatus)
+adminrouter.route('/get-merchant/:id').get(isAuthenticated,admin.GetMercentdata).patch(isAuthenticated,admin.UpdateMerChantdata)
+
+adminrouter.route('/payment').post(isAuthenticated,admin.getAdminSuscription)
 
 
 
