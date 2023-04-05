@@ -47,7 +47,6 @@ const CatchAsyncHandler =require('../../Middleware/Error/CatchAsyncHandler')
 
    student.save(async(err, doc) => {
       if (err) return next(new Error(`${err.message}`, 400));
-      const data  =await StudentProfile.create({StudentId:doc._id})
       res.status(200).send({
          message: REGISTRATION_SUCCESS,
          succes: true,
