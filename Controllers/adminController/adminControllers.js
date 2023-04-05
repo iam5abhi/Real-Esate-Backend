@@ -109,10 +109,10 @@ exports.MultipleCreateAccount = CatchAsyncHandler((req, res, next) => {
    };
 
 
-   const student = new User(data);
-   student.save(async(err, doc) => {
+   const Merchant = new User(data);
+   Merchant.save(async(err, doc) => {
       if (err) return next(new Error(`${err.message}`, 400));
-       res.status(200).send(doc)
+       res.status(200).send({message:'registered sucessfully',doc})
    })
     
 })
