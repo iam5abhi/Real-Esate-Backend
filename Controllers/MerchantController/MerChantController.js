@@ -3,7 +3,7 @@ const Error = require("../../Utils/ErrorHandler/ErrorHandler");
 const { validationResult } = require("express-validator");
 const base64 = require("base-64");
 const FactorHandler = require('../../FactoryHandler/factoryhandler')
-const { REGISTRATION_SUCCESS, PASSWORD_NOT_MATCH, USER_ALREADY_EXIST,OMPARE_PASSWORD_USING_DB,LOGIN_SUCCESS,USER_ALREADY_EXIST} } = require('../../ConstandMessage/Message')
+const { REGISTRATION_SUCCESS, PASSWORD_NOT_MATCH,OMPARE_PASSWORD_USING_DB,LOGIN_SUCCESS,USER_ALREADY_EXIST} = require('../../ConstandMessage/Message')
 const createSendToken = require("../../suscribers/createSendToken");
 
 const CatchAsyncHandler =require('../../Middleware/Error/CatchAsyncHandler')
