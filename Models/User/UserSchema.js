@@ -74,6 +74,23 @@ const UserSchema = new mongoose.Schema({
     type:String,
     required:true 
   },
+  password: {
+    type: String,
+    required: [true, "Please provide a  password"],
+    minlength: 5,
+    select: false,
+  },
+  confirmPassword: {
+    type: String,
+    required: [true, "Please confirm your password"],
+    minlength: 5,
+    validate: {
+      validator: function (Cpassword) {
+        return Cpassword === this.password;
+      },
+      message: "Your password and confirmation password do not match",
+    },
+  },
   status: {
     type: String,
     enum:['active','inactive','onhold','pending'],
@@ -89,14 +106,14 @@ UserSchema.pre("save", async function (next) {
   next();
 });
 
-// UserSchema.pre("save", async function (next) {
-//   if (!this.isModified("password") || this.isNew) return next();
-//   this.PasswordChangedAt = Date.now() - 1000;
-//   next();
-// });
+UserSchema.pre("save", async function (next) {
+  if (!this.isModified("password") || this.isNew) return next();
+  this.PasswordChangedAt = Date.now() - 1000;
+  next();
+});
 
-// //Compase the Password
-// UserSchema.methods.comparepassword=async function(password){return await bcrypt.compare(password,this.password)}
+//Compase the Password
+UserSchema.methods.comparepassword=async function(password){return await bcrypt.compare(password,this.password)}
 
 
 

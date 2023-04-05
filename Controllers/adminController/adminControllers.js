@@ -104,6 +104,8 @@ exports.MultipleCreateAccount = CatchAsyncHandler((req, res, next) => {
          Pincode:parseInt(req.body.Pincode)
    }],
    GST:req.body.gstNumber,
+   password:`${req.body.name}@123`,
+   confirmPassword:`${req.body.name}@123`
    };
 
 
