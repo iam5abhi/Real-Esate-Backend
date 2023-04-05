@@ -142,5 +142,11 @@ exports.getAdminSuscription =async(req,res,next)=>{
 }
 
 
-exports.getSuscriptionData=FactorHandler.getOne(PaymentModel)
+exports.getSuscriptionData=(req,res,next)=>{
+   PaymentModel.findOne({Merchant:req.params.id},function(err,data){
+      if(!data) return next(new Error(`data is not availble`,400))
+      res.status(200).send({data:data})
+   })
+}
+
 
