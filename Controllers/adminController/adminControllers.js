@@ -126,6 +126,8 @@ exports.UpdateMerChantdataStatus=FactorHandler.updateOne(User)
 
 
 exports.getAdminSuscription =async(req,res,next)=>{
+   const data = await PaymentModel.findOne({Merchant:req.params.id})
+   if(data) return next(new Error('Sucription already assigned'))
   const payment={
     Merchant:req.params.id,
     paymentId: Math.floor(1000000000 + Math.random() * 900000000000),
