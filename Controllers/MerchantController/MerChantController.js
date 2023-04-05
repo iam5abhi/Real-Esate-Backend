@@ -4,6 +4,7 @@ const { validationResult } = require("express-validator");
 const base64 = require("base-64");
 const FactorHandler = require('../../FactoryHandler/factoryhandler')
 const { REGISTRATION_SUCCESS, PASSWORD_NOT_MATCH, USER_ALREADY_EXIST } = require('../../ConstandMessage/Message')
+const createSendToken = require("../../suscribers/createSendToken");
 
 const CatchAsyncHandler =require('../../Middleware/Error/CatchAsyncHandler')
 
