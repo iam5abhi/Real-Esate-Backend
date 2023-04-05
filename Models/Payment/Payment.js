@@ -8,6 +8,7 @@ const PaymentSchema  = new Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: User,
         required: [true, "User id is required"],
+        unique:true
     },
     paymentId: {type:String,required:true},
     amount:{type:Number,required:true},
