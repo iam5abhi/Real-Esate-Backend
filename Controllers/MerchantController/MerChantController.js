@@ -76,3 +76,6 @@ exports.Login =CatchAsyncHandler(async(req, res, next) => {
  });
 
 
+exports.UpdatePassword =FactorHandler.UpdatePasswordHandler(User)
+
+

@@ -5,8 +5,8 @@ const Mechant =require('../../Controllers/MerchantController/MerChantController'
  const isAuthenticated=require('../../Middleware/isAuthenticated/isAuthenticated')
 
 
-//  Merchantrouter.route('/registration').post(registerValidator(),student.CreateAccount)
-//  Merchantrouter.route('/change-password').patch(isAuthenticated,resticrtTo('student'),updatePasswordHandler(),student.UpdatePassword)
+/Merchantrouter.route('/registration').post(registerValidator(),Mechant.CreateAccount)
+ Merchantrouter.route('/change-password').patch(isAuthenticated,resticrtTo('student'),updatePasswordHandler(),Mechant.UpdatePassword)
 Merchantrouter.route('/login').post(Mechant.Login)
 
 
