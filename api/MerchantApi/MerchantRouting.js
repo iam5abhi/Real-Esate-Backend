@@ -1,6 +1,6 @@
 const express =require('express')
 const Merchantrouter = express.Router();
-const {registerValidator} =require('../../Features/RegisterValidator/registerValidator')
+const {registerValidator,updatePasswordHandler} =require('../../Features/RegisterValidator/registerValidator')
 const Mechant =require('../../Controllers/MerchantController/MerChantController')
  const isAuthenticated=require('../../Middleware/isAuthenticated/isAuthenticated')
 
