@@ -35,7 +35,7 @@ app.use(function(req, res, next) {
 // Hand The employee-routes
 
 app.use('/api/admin',adminApi)
-app.use('/api/student',studentApi)
+app.use('/api/merchant',studentApi)
 
 
 
