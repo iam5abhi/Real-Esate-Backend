@@ -59,9 +59,9 @@ exports.Login =CatchAsyncHandler(async(req, res, next) => {
     if (!errors.isEmpty())
        return res.status(422).send({ errors: errors.array() });
        User.findOne({email:req.body.email}, async function (err, user) {
-       if (!user) return next(new Error(COMPARE_PASSWORD_USING_DB, 400));
+       if (!user) return next(new Error("invalid email and password", 400));
        const isMatch = await user.comparepassword(password);
-       if (!isMatch) return next(new Error(COMPARE_PASSWORD_USING_DB, 400));
+       if (!isMatch) return next(new Error("invalid email and password", 400));
        createSendToken(user,200,req,res,LOGIN_SUCCESS)
     }).select("+password");
  });
