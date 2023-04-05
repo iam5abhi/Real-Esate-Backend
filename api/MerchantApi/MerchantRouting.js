@@ -6,7 +6,7 @@ const Mechant =require('../../Controllers/MerchantController/MerChantController'
 
 
 /Merchantrouter.route('/registration').post(registerValidator(),Mechant.CreateAccount)
- Merchantrouter.route('/change-password').patch(isAuthenticated,resticrtTo('student'),updatePasswordHandler(),Mechant.UpdatePassword)
+ Merchantrouter.route('/change-password').patch(isAuthenticated,updatePasswordHandler(),Mechant.UpdatePassword)
 Merchantrouter.route('/login').post(Mechant.Login)
 
 
