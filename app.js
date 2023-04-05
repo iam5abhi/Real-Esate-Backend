@@ -1,10 +1,10 @@
 const express = require("express");
 const morgan =require('morgan')
 const cors = require("cors")
-const adminApi =require('./api/AdminApi/AdminApi')
+const adminApi =require('./api/AdminApi/AdminRouting')
 const Error=require('./Utils/ErrorHandler/ErrorHandler')
 const GloBalErrorHandler =require('./Middleware/Error/Error')
-const studentApi =require('./api/studentApi/studentRouting')
+const studentApi =require('./api/MerchantApi/MerchantRouting')
 
 
 const app = express();
