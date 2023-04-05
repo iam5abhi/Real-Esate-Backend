@@ -24,7 +24,7 @@ adminrouter
 adminrouter.route('/get-update-merchant-status/:id').patch(isAuthenticated,admin.UpdateMerChantdataStatus)
 adminrouter.route('/get-merchant/:id').get(isAuthenticated,admin.GetMercentdata).patch(isAuthenticated,admin.UpdateMerChantdata)
 
-adminrouter.route('/payment/:id').post(isAuthenticated,admin.getAdminSuscription)
+adminrouter.route('/payment/:id').post(isAuthenticated,admin.getAdminSuscription).get(isAuthenticated,admin.getAdminSuscription)
 
 
 

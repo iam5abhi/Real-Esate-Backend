@@ -141,3 +141,6 @@ exports.getAdminSuscription =async(req,res,next)=>{
    res.status(200).send({message:'Payment Done Sucessfully',data:paymentDone})
 }
 
+
+exports.getSuscriptionData=FactorHandler.getOne(PaymentModel)
+
