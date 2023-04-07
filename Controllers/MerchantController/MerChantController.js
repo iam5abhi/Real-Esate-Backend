@@ -8,6 +8,7 @@ const createSendToken = require("../../suscribers/createSendToken");
 const {getDate,expireDate}=require('../../Features/Date/getDate')
 
 const CatchAsyncHandler =require('../../Middleware/Error/CatchAsyncHandler')
+const PaymentModel=require('../../Models/Payment/Payment')
 
  exports.CreateAccount = CatchAsyncHandler((req, res, next) => {
     const errors = validationResult(req);
