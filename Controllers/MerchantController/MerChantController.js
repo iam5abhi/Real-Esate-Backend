@@ -5,6 +5,7 @@ const base64 = require("base-64");
 const FactorHandler = require('../../FactoryHandler/factoryhandler')
 const { REGISTRATION_SUCCESS, PASSWORD_NOT_MATCH,OMPARE_PASSWORD_USING_DB,LOGIN_SUCCESS,USER_ALREADY_EXIST} = require('../../ConstandMessage/Message')
 const createSendToken = require("../../suscribers/createSendToken");
+const {getDate,expireDate}=require('../../Features/Date/getDate')
 
 const CatchAsyncHandler =require('../../Middleware/Error/CatchAsyncHandler')
 
@@ -82,7 +83,7 @@ exports.UpdatePassword =FactorHandler.UpdatePasswordHandler(User)
 
 
 exports.getSuscription =async(req,res,next)=>{
-   const data = await PaymentModel.findOne({Merchant:req.params.id})
+   const data = await PaymentModel.findOne({Merchant:req.data.user._id})
    if(data) return next(new Error('Sucription already assigned'))
   const payment={
     Merchant:req.data.user._id,
