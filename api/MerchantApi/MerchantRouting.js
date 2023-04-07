@@ -11,7 +11,7 @@ Merchantrouter.route('/login').post(Mechant.Login)
 
 
 
-Merchantrouter.route('/suscription').post(isAuthenticated,Mechant.getSuscription)
+Merchantrouter.route('/suscription').post(isAuthenticated,Mechant.getSuscription).get(isAuthenticated,Mechant.getSuscriptionData)
 
 
 

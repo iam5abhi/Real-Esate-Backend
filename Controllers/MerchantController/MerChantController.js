@@ -100,3 +100,11 @@ exports.getSuscription =async(req,res,next)=>{
    res.status(200).send({message:'Payment Done Sucessfully',data:paymentDone})
 }
 
+
+exports.getSuscriptionData =async(req,res,next)=>{
+   const data = await PaymentModel.findOne({Merchant:req.data.user._id})
+   if(!data) return next(new Error('Data Is Not Available'))
+   res.status(200).send({message:'Send Data Sucessfully',data:data})
+
+}
+
