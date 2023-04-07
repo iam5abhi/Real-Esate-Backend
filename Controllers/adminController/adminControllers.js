@@ -117,7 +117,7 @@ exports.getAdminSuscription =async(req,res,next)=>{
     Merchant:req.params.id,
     paymentId: Math.floor(1000000000 + Math.random() * 900000000000),
     amount:349,
-    plan:'Sliver',
+    plan:'SILVER',
     startDate:getDate(0),
     endDate:expireDate(0)
   }

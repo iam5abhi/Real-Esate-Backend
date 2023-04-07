@@ -14,7 +14,7 @@ const PaymentSchema  = new Schema({
     amount:{type:Number,required:true},
     plan: {
       type: String,
-      enum: ["Silver", "Gold", "Platinum"],
+      enum: ["SILVER", "GOLD", "PLATINUM"],
       required: true,
     },
     startDate: {
