@@ -84,6 +84,7 @@ exports.UpdatePassword =FactorHandler.UpdatePasswordHandler(User)
 
 
 exports.getSuscription =async(req,res,next)=>{
+   const month = parseInt(req.body.month)+1
    const data = await PaymentModel.findOne({Merchant:req.data.user._id})
    if(data) return next(new Error('Sucription already assigned'))
   const payment={
@@ -92,7 +93,7 @@ exports.getSuscription =async(req,res,next)=>{
     amount:req.body.amount,
     plan:req.body.plan,
     startDate:getDate(0),
-    endDate:expireDate(req.body.month)
+    endDate:expireDate(month)
   }
    const paymentDone =await PaymentModel.create(payment)
    if(!paymentDone) return next(new Error('Your Payment Decline',400))
