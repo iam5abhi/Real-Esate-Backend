@@ -92,7 +92,7 @@ exports.getSuscription =async(req,res,next)=>{
     amount:req.body.amount,
     plan:req.body.plan,
     startDate:getDate(0),
-    endDate:expireDate(0)
+    endDate:expireDate(req.body.month)
   }
    const paymentDone =await PaymentModel.create(payment)
    if(!paymentDone) return next(new Error('Your Payment Decline',400))
