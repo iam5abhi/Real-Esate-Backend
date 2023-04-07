@@ -70,21 +70,6 @@ exports.UpdatePassword =CatchAsyncHandler(FactorHandler.UpdatePasswordHandler(Ad
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 exports.MultipleCreateAccount = CatchAsyncHandler((req, res, next) => {
       User.findOne({ email: req.body.email }, (err, user) => {
          if (user) return next(new Error(USER_ALREADY_EXIST, 400));

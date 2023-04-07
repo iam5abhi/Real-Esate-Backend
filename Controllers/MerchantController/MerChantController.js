@@ -78,3 +78,22 @@ exports.Login =CatchAsyncHandler(async(req, res, next) => {
 exports.UpdatePassword =FactorHandler.UpdatePasswordHandler(User)
 
 
+
+
+
+exports.getSuscription =async(req,res,next)=>{
+   const data = await PaymentModel.findOne({Merchant:req.params.id})
+   if(data) return next(new Error('Sucription already assigned'))
+  const payment={
+    Merchant:req.data.user._id,
+    paymentId: Math.floor(1000000000 + Math.random() * 900000000000),
+    amount:req.body.amount,
+    plan:req.body.plan,
+    startDate:getDate(0),
+    endDate:expireDate(0)
+  }
+   const paymentDone =await PaymentModel.create(payment)
+   if(!paymentDone) return next(new Error('Your Payment Decline',400))
+   res.status(200).send({message:'Payment Done Sucessfully',data:paymentDone})
+}
+
