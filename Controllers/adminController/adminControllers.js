@@ -119,7 +119,7 @@ exports.getAdminSuscription =async(req,res,next)=>{
     amount:349,
     plan:'SILVER',
     startDate:getDate(0),
-    endDate:expireDate(4)
+    endDate:req.body.expireDate
   }
    const paymentDone =await PaymentModel.create(payment)
    if(!paymentDone) return next(new Error('Your Payment Decline',400))
