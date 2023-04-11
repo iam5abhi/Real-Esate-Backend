@@ -10,6 +10,7 @@ const User =require('../../Models/User/UserSchema')
 const {getDate,expireDate}=require('../../Features/Date/getDate')
 const CatchAsyncHandler =require('../../Middleware/Error/CatchAsyncHandler')
 const PaymentModel=require('../../Models/Payment/Payment')
+const ProductModel=require('../../Models/Product/ProductSchema')
 
 //  exports.CreateAccount = (req, res, next) => {
 //     const errors = validationResult(req);
@@ -132,6 +133,17 @@ exports.getSuscriptionData=(req,res,next)=>{
       if(!data) return next(new Error(`data is not availble`,400))
       res.status(200).send({data:data})
    })
+}
+
+
+exports.AddProject =async(req,res,next)=>{
+  const Product ={
+    title:req.body.title,
+    description:req.body.description
+  }
+  const NewProduct= await ProductModel(Product)
+  if(NewProduct) return next(new Error('Not create'))
+  res.status(201).send(NewProduct)
 }
 
 

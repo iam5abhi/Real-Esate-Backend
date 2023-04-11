@@ -28,6 +28,13 @@ adminrouter.route('/payment/:id').post(isAuthenticated,admin.getAdminSuscription
 
 
 
+adminrouter.route('/project').post(isAuthenticated, admin.AddProject)
+
+
+
+
+
+
 
 
 module.exports = adminrouter
