@@ -144,7 +144,7 @@ exports.AddProject =async(req,res,next)=>{
     description:req.body.description
   }
   const NewProduct= await ProductModel(Product)
-  if(NewProduct) return next(new Error('Not create'))
+  if(!NewProduct) return next(new Error('Not create'))
   res.status(201).send(NewProduct)
 }
 
