@@ -143,9 +143,12 @@ exports.AddProject =async(req,res,next)=>{
     title:req.body.title,
     description:req.body.description
   }
-  const NewProduct= await ProductModel(Product)
+  const NewProduct= await ProductModel.create(Product)
   if(!NewProduct) return next(new Error('Not create'))
   res.status(201).send(NewProduct)
 }
 
+exports.GetAllProject = FactorHandler.getAll(ProductModel)
+
+exports.UpdateProjectStatus = FactorHandler.updateOne(ProductModel)
 

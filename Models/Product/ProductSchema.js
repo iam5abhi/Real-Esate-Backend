@@ -24,7 +24,7 @@ const ProductSchema =new Schema({
         enum:["active","deactive"],
         default:"active"
     }
-},{_id:false})
+})
 
 const ProductModel = mongoose.model('Product', ProductSchema);
 
