@@ -137,7 +137,9 @@ exports.getSuscriptionData=(req,res,next)=>{
 
 
 exports.AddProject =async(req,res,next)=>{
+   const project =await ProductModel.find({})
   const Product ={
+   Pid:project.length+1,
     title:req.body.title,
     description:req.body.description
   }

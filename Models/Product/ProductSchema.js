@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 
 const ProductSchema =new Schema({
     Pid:{
-     type:Number,
+     type:String,
      required:true
     },
     title:{
