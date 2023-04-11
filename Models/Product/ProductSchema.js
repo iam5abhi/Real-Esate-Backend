@@ -18,6 +18,11 @@ const ProductSchema =new Schema({
     date:{
         type:Date,
         default:new Date()
+    },
+    status:{
+        type:String,
+        enum:["active","deactive"],
+        default:"active"
     }
 },{_id:false})
 
