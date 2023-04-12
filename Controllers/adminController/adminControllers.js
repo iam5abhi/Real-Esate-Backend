@@ -5,7 +5,7 @@ const createSendToken = require("../../suscribers/createSendToken");
 const base64 = require("base-64");
 const FactorHandler =require('../../FactoryHandler/factoryhandler')
 const {REGISTRATION_SUCCESS,PASSWORD_NOT_MATCH,COMPARE_PASSWORD_USING_DB,LOGIN_SUCCESS,USER_ALREADY_EXIST} =require('../../ConstandMessage/Message')
-const User =require('../../Models/User/UserSchema')
+const User =require('../../Models/Merchant/UserSchema')
 
 const {getDate,expireDate}=require('../../Features/Date/getDate')
 const CatchAsyncHandler =require('../../Middleware/Error/CatchAsyncHandler')

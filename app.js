@@ -5,7 +5,7 @@ const adminApi =require('./api/AdminApi/AdminRouting')
 const Error=require('./Utils/ErrorHandler/ErrorHandler')
 const GloBalErrorHandler =require('./Middleware/Error/Error')
 const studentApi =require('./api/MerchantApi/MerchantRouting')
-
+const clientApi =require('./api/ClientApi/ClientApi')
 
 const app = express();
 
@@ -33,9 +33,11 @@ app.use(function(req, res, next) {
 
 
 // Hand The employee-routes
-
+app.use(clientApi)
 app.use('/api/admin',adminApi)
 app.use('/api/merchant',studentApi)
+
+
 
 
 
