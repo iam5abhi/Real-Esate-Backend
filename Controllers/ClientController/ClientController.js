@@ -6,3 +6,4 @@ const UserInformationModel = require('../../Models/UserInformation/UserInformati
 
 
 exports.getProduct =FactorHandler.getAll(ProductModel)
+exports.getSingleProduct =FactorHandler.getOne(ProductModel)
