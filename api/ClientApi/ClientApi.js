@@ -5,4 +5,4 @@ const client =require('../../Controllers/ClientController/ClientController')
 clientrouter.route('/').get(client.getProduct)
 
 
-module.exports = adminrouterr
+module.exports = clientrouter

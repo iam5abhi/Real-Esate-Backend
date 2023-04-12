@@ -1,4 +1,4 @@
-const User = require("../../Models/User/UserSchema");
+const User = require("../../Models/Merchant/UserSchema");
 const Error = require("../../Utils/ErrorHandler/ErrorHandler");
 const { validationResult } = require("express-validator");
 const base64 = require("base-64");
