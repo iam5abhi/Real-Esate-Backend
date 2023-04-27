@@ -5,15 +5,15 @@ module.exports =(err,req,res,next)=>{
     err.message =err.message || `Internal Server Error`
 
      // //wrong mongodb id error
-     if(err.name =='CastError'){
-         const message =`Resouse not found with this id... invalid  ${err.path}`
-         err=new ErrorHandler(message,400)
-     }
+    if(err.name =='CastError'){
+        const message =`Resouse not found with this id... invalid  ${err.path}`
+        err=new ErrorHandler(message,400)
+    }
 
     // duplicate Error  
     if(err.code ===11000) {
         const message = `Duplicate ${Object.keys(err.keyValue)} Entered `
-         err=new ErrorHandler(message,400)
+        err=new ErrorHandler(message,400)
 
     }
 
@@ -23,7 +23,7 @@ module.exports =(err,req,res,next)=>{
         }
 
     // Wrong Jwt error
-     if (err.name === "JsonWebTokenError") {
+    if (err.name === "JsonWebTokenError") {
         const message = `Your url is invalid please try again`;
         err = new ErrorHandler(message, 400);
         }
@@ -36,3 +36,4 @@ module.exports =(err,req,res,next)=>{
         message: err.message
     })
 }
+  
