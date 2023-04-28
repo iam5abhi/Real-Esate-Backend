@@ -1,7 +1,12 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const MerchantSchema = require('../Merchant/UserSchema')
 
 const ProductSchema = new Schema({
+    MerchantId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: MerchantSchema,
+    },
     Pid: {
         type: String,
         required: true,

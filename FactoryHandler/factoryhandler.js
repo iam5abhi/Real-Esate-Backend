@@ -51,8 +51,6 @@ exports.Add =Model=>{
 }
 
 
-
-
 exports.updateOne =Model=>{
    return async(req,res,next)=>{       
       Model.findOneAndUpdate({_id:req.params.id},req.body,function(err,data){

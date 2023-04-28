@@ -1,10 +1,15 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const validator = require("validator");
+const ProductSchema = require("../Product/ProductSchema");
 
 
 const ClientContectQuerySchema =new Schema({
-       name: {
+      ProductId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: ProductSchema,
+      },
+      name: {
         type: String,
         required: [true, "Please tell us your name"],
         trim: true,

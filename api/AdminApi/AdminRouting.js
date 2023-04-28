@@ -29,9 +29,10 @@ adminrouter.route('/payment/:id').post(isAuthenticated,admin.getAdminSuscription
 
 
 adminrouter.route('/project').post(isAuthenticated, admin.AddProject).get(isAuthenticated,admin.GetAllProject)
+adminrouter.route('/project/:id').get(isAuthenticated,admin.GetSingleProject)
 adminrouter.route('/project-status/:id').patch(isAuthenticated, admin.UpdateProjectStatus)
 
-
+adminrouter.route('/get-all-leads').get(isAuthenticated,admin.GetAllLeads)
 
 
 

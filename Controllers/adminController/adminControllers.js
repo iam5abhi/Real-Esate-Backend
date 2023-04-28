@@ -11,6 +11,7 @@ const {getDate,expireDate}=require('../../Features/Date/getDate')
 const CatchAsyncHandler =require('../../Middleware/Error/CatchAsyncHandler')
 const PaymentModel=require('../../Models/Payment/Payment')
 const ProductModel=require('../../Models/Product/ProductSchema')
+const ClientContectQuerySchema = require('../../Models/ClientContectQuery/ClientContectQuerySchema')
 
 //  exports.CreateAccount = (req, res, next) => {
 //     const errors = validationResult(req);
@@ -149,6 +150,13 @@ exports.AddProject =async(req,res,next)=>{
 }
 
 exports.GetAllProject = FactorHandler.getAll(ProductModel)
+exports.GetSingleProject = FactorHandler.getOne(ProductModel)
 
 exports.UpdateProjectStatus = FactorHandler.updateOne(ProductModel)
+
+exports.GetAllLeads = async(req,res,next)=>{
+  const querydata =await ClientContectQuerySchema.find({}).populate('ProductId')
+  res.status(200).send({data:querydata})
+}
+
 

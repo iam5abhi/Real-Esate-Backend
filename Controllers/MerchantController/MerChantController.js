@@ -6,6 +6,7 @@ const FactorHandler = require('../../FactoryHandler/factoryhandler')
 const { REGISTRATION_SUCCESS, PASSWORD_NOT_MATCH,OMPARE_PASSWORD_USING_DB,LOGIN_SUCCESS,USER_ALREADY_EXIST} = require('../../ConstandMessage/Message')
 const createSendToken = require("../../suscribers/createSendToken");
 const {getDate,expireDate}=require('../../Features/Date/getDate')
+const ProductModel = require('../../Models/Product/ProductSchema')
 
 const CatchAsyncHandler =require('../../Middleware/Error/CatchAsyncHandler')
 const PaymentModel=require('../../Models/Payment/Payment')
@@ -107,4 +108,13 @@ exports.getSuscriptionData =async(req,res,next)=>{
    res.status(200).send({message:'Send Data Sucessfully',data:data})
 
 }
+
+exports.getAllProduct =FactorHandler.getAll(ProductModel)
+
+exports.SubscribeProduct =async(req,res,next)=>{
+   const data = await ProductModel.updateOne({_id:req.params.id},{$set:{MerchantId:req.data.user._id}})
+   if(!data) return next(new Error('Data Is Not Available'))
+   res.status(200).send({message:'Send Data Sucessfully',data:data})
+}
+
 
