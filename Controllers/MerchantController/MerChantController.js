@@ -84,7 +84,7 @@ exports.UpdatePassword =FactorHandler.UpdatePasswordHandler(User)
 
 
 
-exports.AddSuscription =async(req,res,next)=>{
+exports.getSuscription =async(req,res,next)=>{
    const month = parseInt(req.body.month)+1
    const data = await PaymentModel.findOne({Merchant:req.data.user._id})
    if(data) return next(new Error('Sucription already assigned'))
@@ -119,7 +119,7 @@ exports.SubscribeProduct =async(req,res,next)=>{
 
 
 exports.UnSubscribeProduct =async(req,res,next)=>{
-   const data = await ProductModel.updateOne({_id:req.params.id},{$unset:{MerchantId:req.data.user._id}})
+   const data = await ProductModel.updateOne({_id:req.params.id},{$unset:{MerchantId:eq.data.user._id}})
    if(!data) return next(new Error('Data Is Not Available'))
    res.status(200).send({message:'Send Data Sucessfully',data:data})
 }
