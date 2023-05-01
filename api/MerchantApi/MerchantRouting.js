@@ -15,6 +15,8 @@ Merchantrouter.route('/suscription').post(isAuthenticated,Mechant.getSuscription
 Merchantrouter.route('/getallproduct').get(isAuthenticated,Mechant.getAllProduct)
 Merchantrouter.route('/subscribe-product/:id').patch(isAuthenticated,Mechant.SubscribeProduct)
 
+Merchantrouter.route('/unsubscribe-product/:id').patch(isAuthenticated,Mechant.UnSubscribeProduct)
+
 
 
 
