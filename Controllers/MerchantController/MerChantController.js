@@ -112,7 +112,7 @@ exports.getSuscriptionData =async(req,res,next)=>{
 exports.getAllProduct =FactorHandler.getAll(ProductModel)
 
 exports.SubscribeProduct =async(req,res,next)=>{
-   const data = await ProductModel.updateOne({_id:req.params.id},{$set:{MerchantId:req.data.user._id}})
+   const data = await ProductModel.updateOne({_id:req.params.id},{$set:{MerchantId:req.data.user._id}},{$currentDate:{date:true}})
    if(!data) return next(new Error('Data Is Not Available'))
    res.status(200).send({message:'Send Data Sucessfully',data:data})
 }
