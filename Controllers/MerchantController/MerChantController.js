@@ -102,6 +102,20 @@ exports.getSuscription =async(req,res,next)=>{
 }
 
 
+exports.UpgradePlan=async(req,res,next)=>{
+   const payment={
+      paymentId: Math.floor(1000000000 + Math.random() * 900000000000),
+      amount:req.body.amount,
+      plan:req.body.plan,
+      startDate:getDate(0),
+      endDate:expireDate(month)
+    }
+    const data = await ProductModel.updateOne({_id:req.params.id},{$set:payment})
+   if(!data) return next(new Error('Data Is Not Available'))
+   res.status(200).send({message:'Send Data Sucessfully',data:data})
+}
+
+
 exports.getSuscriptionData =async(req,res,next)=>{
    const data = await PaymentModel.findOne({Merchant:req.data.user._id})
    if(!data) return next(new Error('Data Is Not Available'))
@@ -112,14 +126,14 @@ exports.getSuscriptionData =async(req,res,next)=>{
 exports.getAllProduct =FactorHandler.getAll(ProductModel)
 
 exports.SubscribeProduct =async(req,res,next)=>{
-   const data = await ProductModel.updateOne({_id:req.params.id},{$set:{MerchantId:req.data.user._id}},{$currentDate:{date:true}})
+   const data = await ProductModel.updateOne({_id:req.params.id},{$set:{MerchantId:req.data.user._id}},{$$currentDate:{date:true}})
    if(!data) return next(new Error('Data Is Not Available'))
    res.status(200).send({message:'Send Data Sucessfully',data:data})
 }
 
 
 exports.UnSubscribeProduct =async(req,res,next)=>{
-   const data = await ProductModel.updateOne({_id:req.params.id},{$unset:{MerchantId:eq.data.user._id}})
+   const data = await ProductModel.updateOne({_id:req.params.id},{$unset:{MerchantId:req.data.user._id}})
    if(!data) return next(new Error('Data Is Not Available'))
    res.status(200).send({message:'Send Data Sucessfully',data:data})
 }
