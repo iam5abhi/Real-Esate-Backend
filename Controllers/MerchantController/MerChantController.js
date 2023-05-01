@@ -84,7 +84,7 @@ exports.UpdatePassword =FactorHandler.UpdatePasswordHandler(User)
 
 
 
-exports.getSuscription =async(req,res,next)=>{
+exports.AddSuscription =async(req,res,next)=>{
    const month = parseInt(req.body.month)+1
    const data = await PaymentModel.findOne({Merchant:req.data.user._id})
    if(data) return next(new Error('Sucription already assigned'))
