@@ -110,7 +110,7 @@ exports.UpgradePlan=async(req,res,next)=>{
       startDate:getDate(0),
       endDate:expireDate(month)
     }
-    const data = await ProductModel.updateOne({_id:req.params.id},{$set:payment})
+    const data = await ProductModel.updateOne({_id:req.data.user._id},{$set:payment})
    if(!data) return next(new Error('Data Is Not Available'))
    res.status(200).send({message:'Send Data Sucessfully',data:data})
 }
