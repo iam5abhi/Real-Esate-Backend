@@ -141,9 +141,13 @@ exports.getSuscriptionData=(req,res,next)=>{
 exports.AddProject =async(req,res,next)=>{
    const project =await ProductModel.find({})
   const Product ={
-   Pid:project.length+1,
-    title:req.body.title,
-    description:req.body.description
+   PropertId:req.body.PropertId,
+   propertyname:req.body.propertyname,
+   propertytype:req.body.propertytype,
+   price:req.body.price,
+   propertybhk:req.body.propertybhk
+   
+
   }
   const NewProduct= await ProductModel.create(Product)
   if(!NewProduct) return next(new Error('Not create'))

@@ -1,29 +1,41 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const MerchantSchema = require('../Merchant/UserSchema')
+const Property =require('../Property/PropertySchema')
 
 const ProductSchema = new Schema({
     MerchantId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: MerchantSchema,
     },
-    Pid: {
+     PropertId:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: Property,
+     },
+     propertyname:{
         type: String,
         required: true,
     },
-    title: {
+    propertytype:{
         type: String,
         required: true,
     },
-    description: {
-        type: String,
+    area:{
+        type:Number,
+    },
+    price:{
+        type: Number,
         required: true,
+    },
+    propertybhk:{
+        type:String,
+        required: 'BHK is required'
     },
     date: {
         type: Date,
         default: new Date(),
     },
-    status: {
+    propertystatus: {
         type: String,
         enum: ["active", "deactive"],
         default: "active",
