@@ -29,7 +29,7 @@ const ProductSchema = new Schema({
     },
     propertybhk:{
         type:String,
-        required: 'BHK is required'
+        required: true
     },
     date: {
         type: Date,
