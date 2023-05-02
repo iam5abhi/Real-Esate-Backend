@@ -6,6 +6,7 @@ const base64 = require("base-64");
 const FactorHandler =require('../../FactoryHandler/factoryhandler')
 const {REGISTRATION_SUCCESS,PASSWORD_NOT_MATCH,COMPARE_PASSWORD_USING_DB,LOGIN_SUCCESS,USER_ALREADY_EXIST} =require('../../ConstandMessage/Message')
 const User =require('../../Models/Merchant/UserSchema')
+const PropertySchema = require('../../Models/Property/PropertySchema')
 
 const {getDate,expireDate}=require('../../Features/Date/getDate')
 const CatchAsyncHandler =require('../../Middleware/Error/CatchAsyncHandler')
@@ -158,5 +159,10 @@ exports.GetAllLeads = async(req,res,next)=>{
   const querydata =await ClientContectQuerySchema.find({}).populate('ProductId')
   res.status(200).send({data:querydata})
 }
+
+exports.AddProperty = FactorHandler.Add(PropertySchema)
+exports.GetAllProperty = FactorHandler.getAll(PropertySchema)
+exports.UpdatePropertyStatus=FactorHandler.updateOne(PropertySchema)
+exports.GetSingleProperty=FactorHandler.getOne(PropertySchema)
 
 

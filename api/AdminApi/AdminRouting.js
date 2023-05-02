@@ -34,6 +34,9 @@ adminrouter.route('/project-status/:id').patch(isAuthenticated, admin.UpdateProj
 
 adminrouter.route('/get-all-leads').get(isAuthenticated,admin.GetAllLeads)
 
+adminrouter.route('/property').post(isAuthenticated, admin.AddProperty).get(isAuthenticated,admin.GetAllProperty)
+adminrouter.route('/property/:id').patch(isAuthenticated, admin.UpdatePropertyStatus).get(isAuthenticated,admin.GetSingleProperty)
+
 
 
 

@@ -103,6 +103,11 @@ exports.getSuscription =async(req,res,next)=>{
 
 
 exports.UpgradePlan=async(req,res,next)=>{
+   let month = parseInt(req.body.month)+1
+   if(req.body.month>10){
+       month=parseInt(req.body.month)
+   }
+
    const payment={
       paymentId: Math.floor(1000000000 + Math.random() * 900000000000),
       amount:req.body.amount,
@@ -110,9 +115,11 @@ exports.UpgradePlan=async(req,res,next)=>{
       startDate:getDate(0),
       endDate:expireDate(month)
     }
-    const data = await ProductModel.updateOne({_id:req.data.user._id},{$set:payment})
-   if(!data) return next(new Error('Data Is Not Available'))
-   res.status(200).send({message:'Send Data Sucessfully',data:data})
+
+
+   const data = await PaymentModel.updateOne({Merchant:req.data.user._id},{$set:payment})
+  if(!data) return next(new Error('Data Is Not Available'))
+  res.status(200).send({message:'Send Data Sucessfully',data:data})
 }
 
 
