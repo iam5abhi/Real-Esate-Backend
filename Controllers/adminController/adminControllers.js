@@ -146,8 +146,6 @@ exports.AddProject =async(req,res,next)=>{
    propertytype:req.body.propertytype,
    price:req.body.price,
    propertybhk:req.body.propertybhk
-   
-
   }
   const NewProduct= await ProductModel.create(Product)
   if(!NewProduct) return next(new Error('Not create'))

@@ -24,7 +24,7 @@ const ProductSchema = new Schema({
         type:Number,
     },
     price:{
-        type: Number,
+        type: String,
         required: true,
     },
     propertybhk:{
@@ -38,7 +38,7 @@ const ProductSchema = new Schema({
     propertystatus: {
         type: String,
         enum: ["active", "deactive"],
-        default: "active",
+            default: "active",
     },
 });
 
