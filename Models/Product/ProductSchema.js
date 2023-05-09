@@ -27,10 +27,7 @@ const ProductSchema = new Schema({
         type: String,
         required: true,
     },
-    propertybhk:{
-        type:String,
-        required: true
-    },
+    propertybhk:[],
     date: {
         type: Date,
         default: new Date(),

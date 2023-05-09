@@ -13,6 +13,10 @@ const CatchAsyncHandler =require('../../Middleware/Error/CatchAsyncHandler')
 const PaymentModel=require('../../Models/Payment/Payment')
 const ProductModel=require('../../Models/Product/ProductSchema')
 const ClientContectQuerySchema = require('../../Models/ClientContectQuery/ClientContectQuerySchema')
+const db = require('../../DataBase/database')
+const mongoose = require('mongoose')
+
+var ObjectID = require("mongodb").ObjectID;
 
 //  exports.CreateAccount = (req, res, next) => {
 //     const errors = validationResult(req);
@@ -52,6 +56,7 @@ const ClientContectQuerySchema = require('../../Models/ClientContectQuery/Client
 //        });
 //     });
 //  };
+
 
 exports.Login = CatchAsyncHandler(async (req, res, next) => {
    const password = base64.decode(req.body.password);
@@ -139,7 +144,6 @@ exports.getSuscriptionData=(req,res,next)=>{
 
 
 exports.AddProject =async(req,res,next)=>{
-   const project =await ProductModel.find({})
   const Product ={
    PropertId:req.body.PropertId,
    propertyname:req.body.propertyname,
@@ -153,13 +157,32 @@ exports.AddProject =async(req,res,next)=>{
 }
 
 exports.GetAllProject = FactorHandler.getAll(ProductModel)
-exports.GetSingleProject = FactorHandler.getOne(ProductModel)
+// exports.GetSingleProject = FactorHandler.getOne(ProductModel)
+exports.GetSingleProject = async(req,res,next)=>{
+ const result =await ProductModel.aggregate([
+   {$match:{_id: mongoose.Types.ObjectId(req.params.id)}},
+   {$lookup:{from:'properties',localField:'PropertId',foreignField:'_id',as:"property"}},
+   {$project:{propertystatus:0,date:0,PropertId:0}}])
+  res.status(200).send(result)
+}
+
+
 
 exports.UpdateProjectStatus = FactorHandler.updateOne(ProductModel)
 
 exports.GetAllLeads = async(req,res,next)=>{
-  const querydata =await ClientContectQuerySchema.find({}).populate('ProductId')
-  res.status(200).send({data:querydata})
+   const result=await ClientContectQuerySchema.aggregate([
+      {
+         $lookup:{
+            from:"products",
+            localField:'ProductId',
+            foreignField:'_id',
+            as:'Project'
+         }
+      },
+      {$project:{ProductId:0}}
+   ])
+   res.status(200).send(result)
 }
 
 exports.AddProperty = FactorHandler.Add(PropertySchema)

@@ -5,9 +5,9 @@ const ProductSchema = require("../Product/ProductSchema");
 
 
 const ClientContectQuerySchema =new Schema({
-      ProductId: {
+      ProductId:{
         type: mongoose.Schema.Types.ObjectId,
-        ref: ProductSchema,
+        ref:'ProductSchema'
       },
       name: {
         type: String,
@@ -22,10 +22,6 @@ const ClientContectQuerySchema =new Schema({
         type: String,
         required: [true, "Please Provide your email"],
         trim: true,
-        unique: [
-          true,
-          "This Email is Already registerd && Please fill to an another Email ",
-        ],
         lowercase: true,
         validate: [validator.isEmail, "Please provide a valid email"],
         minlength: 5,
@@ -38,10 +34,6 @@ const ClientContectQuerySchema =new Schema({
       phoneNumber: {
         type: Number,
         required: [true, "Please Provide your Phone Number"],
-        unique: [
-          true,
-          "This Phone Number is Already exits && Please fill to an another Phone Number",
-        ],
         minlength: 10,
         maxlength: 12,
       },
