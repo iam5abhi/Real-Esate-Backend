@@ -170,10 +170,9 @@ exports.AddMerchantInformation =async(req,res,next)=>{
       desc:req.body.desc,
       status:req.body.status
    }
-
-  const newData =await MerchantQuery.create(data)
-  if(!newData) return next(new Error("data not be added",500))
-  res.status(201).send(newData)
+   const newData =await MerchantQuery.create(data)
+   if(!newData) return next(new Error("data not be added",500))
+   res.status(201).send(newData)
 }
 
 

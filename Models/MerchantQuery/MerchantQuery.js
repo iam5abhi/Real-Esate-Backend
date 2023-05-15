@@ -1,7 +1,6 @@
 const mongoose =require('mongoose')
 const Schema = mongoose.Schema;
-const UserSchema=require('../Merchant/UserSchema')
-const ProductSchema = require("../Product/ProductSchema");
+const validator = require("validator");
 
 const MerachnatQuerySchema=new Schema({
     MerchantId:{
@@ -55,7 +54,7 @@ const MerachnatQuerySchema=new Schema({
       },
       buy:{
         type:String,
-        enum:['few Days','few Weeks','few Month']
+        enum:['few days','few weeks','few month']
       },
       budget:{
         type:String,
@@ -66,7 +65,7 @@ const MerachnatQuerySchema=new Schema({
     },
     status:{
         type:String,
-        enum:['New','Intersted','Not Intersted','Closed']
+        enum:['new','intersted','not intersted','closed']
     }
 })
 
