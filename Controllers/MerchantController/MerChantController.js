@@ -7,6 +7,7 @@ const { REGISTRATION_SUCCESS, PASSWORD_NOT_MATCH,OMPARE_PASSWORD_USING_DB,LOGIN_
 const createSendToken = require("../../suscribers/createSendToken");
 const {getDate,expireDate}=require('../../Features/Date/getDate')
 const ProductModel = require('../../Models/Product/ProductSchema')
+const MerchantQuery =require('../../Models/MerchantQuery/MerchantQuery')
 
 const CatchAsyncHandler =require('../../Middleware/Error/CatchAsyncHandler')
 const PaymentModel=require('../../Models/Payment/Payment')
@@ -150,5 +151,30 @@ exports.UnSubscribeProduct =async(req,res,next)=>{
    if(!data) return next(new Error('Data Is Not Available'))
    res.status(200).send({message:'Send Data Sucessfully',data:data})
 }
+
+
+
+
+exports.AddMerchantInformation =async(req,res,next)=>{
+   const data ={
+      MerchantId:req.data.user._id,
+      name:req.body.name,
+      email:req.body.email,
+      phoneNumber:req.body.phoneNumber,
+      AlternatePhoneNumber:req.body.alternateNumber,
+      leadOfSource:req.body.leadOfSource,
+      Property:req.body.Property,
+      loan:req.body.loan,
+      buy:req.body.buy,
+      budget:req.body.budget,
+      desc:req.body.desc,
+      status:req.body.status
+   }
+
+  const newData =await MerchantQuery.create(data)
+  if(!newData) return next(new Error("data not be added",500))
+  res.status(201).send(newData)
+}
+
 
 

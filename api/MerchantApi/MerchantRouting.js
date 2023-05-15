@@ -20,6 +20,9 @@ Merchantrouter.route('/subscribe-product/:id').patch(isAuthenticated,Mechant.Sub
 Merchantrouter.route('/unsubscribe-product/:id').patch(isAuthenticated,Mechant.UnSubscribeProduct)
 
 
+Merchantrouter.route('/merchant-query').post(isAuthenticated,Mechant.AddMerchantInformation)
+
+
 
 
 
