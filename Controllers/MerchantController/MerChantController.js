@@ -194,3 +194,17 @@ exports.MerchantQueryDatat =async(req,res,next)=>{
 
 
 
+exports.MerchantQueryGetOne =async(req,res,next)=>{
+   const data =await MerchantQuery.aggregate([
+      {
+         $match:{
+            _id:mongoose.Types.ObjectId(req.params.id)
+         }
+      }
+   ])
+   if(!data)  return next(new Error('data is not getting',500))
+   res.status(200).send(data)
+}
+
+
+
