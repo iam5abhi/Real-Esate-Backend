@@ -217,7 +217,7 @@ exports.MerchantQueryGetOne =async(req,res,next)=>{
 
 
 exports.MerchantQueryUpdateOne=async(req,res,next)=>{
-   const UpdatedData =await MerchantQuery.findOneAndUpdate({__id:req.params.id},req.body)
+   const UpdatedData =await MerchantQuery.findOneAndUpdate({_ssid:req.params.id},req.body)
    if(!UpdatedData)  return next(new Error('data is not getting',500))
    res.status(200).send(UpdatedData)
 }
