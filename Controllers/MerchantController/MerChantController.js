@@ -62,8 +62,6 @@ const PaymentModel=require('../../Models/Payment/Payment')
 });
 
 
-
-
 exports.Login =CatchAsyncHandler(async(req, res, next) => {
   
     const password = base64.decode(req.body.password);
@@ -80,9 +78,6 @@ exports.Login =CatchAsyncHandler(async(req, res, next) => {
 
 
 exports.UpdatePassword =FactorHandler.UpdatePasswordHandler(User)
-
-
-
 
 
 exports.getSuscription =async(req,res,next)=>{

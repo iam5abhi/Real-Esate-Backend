@@ -65,7 +65,7 @@ const MerachnatQuerySchema=new Schema({
     },
     status:{
         type:String,
-        enum:['new','intersted','not intersted','closed']
+        enum:['new','interested','not interested','closed']
     }
 })
 
