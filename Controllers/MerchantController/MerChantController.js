@@ -200,6 +200,14 @@ exports.MerchantQueryGetOne =async(req,res,next)=>{
          $match:{
             _id:mongoose.Types.ObjectId(req.params.id)
          }
+      },
+      {
+         $lookup:{
+            from:'products',
+            localField:'ProductId',
+            foreignField:'Property.value',
+            as:'Project'
+         }
       }
    ])
    if(!data)  return next(new Error('data is not getting',500))
