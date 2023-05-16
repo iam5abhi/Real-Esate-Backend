@@ -23,7 +23,7 @@ Merchantrouter.route('/unsubscribe-product/:id').patch(isAuthenticated,Mechant.U
 Merchantrouter.route('/merchant-query').post(isAuthenticated,Mechant.AddMerchantInformation).get(isAuthenticated,Mechant.MerchantQueryDatat)
 
 
-Merchantrouter.route('/merchant-query/:id').get(isAuthenticated,Mechant.MerchantQueryGetOne)
+Merchantrouter.route('/merchant-query/:id').get(isAuthenticated,Mechant.MerchantQueryGetOne).patch(isAuthenticated,Mechant.MerchantQueryUpdateOne)
 
 
 
