@@ -45,9 +45,10 @@ const MerachnatQuerySchema=new Schema({
           type:String
       },
       Property:[{
+        value:{
         type:mongoose.Schema.Types.ObjectId,
         ref:'ProductSchema'
-      }],
+      }}],
       loan:{
         type:String,
         enum:['yes','no']
