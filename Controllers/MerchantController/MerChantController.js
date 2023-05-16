@@ -8,6 +8,7 @@ const createSendToken = require("../../suscribers/createSendToken");
 const {getDate,expireDate}=require('../../Features/Date/getDate')
 const ProductModel = require('../../Models/Product/ProductSchema')
 const MerchantQuery =require('../../Models/MerchantQuery/MerchantQuery')
+const mongoose=require('mongoose')
 
 const CatchAsyncHandler =require('../../Middleware/Error/CatchAsyncHandler')
 const PaymentModel=require('../../Models/Payment/Payment')
@@ -168,6 +169,27 @@ exports.AddMerchantInformation =async(req,res,next)=>{
    const newData =await MerchantQuery.create(data)
    if(!newData) return next(new Error("data not be added",501))
    res.status(201).send(newData)
+}
+
+
+exports.MerchantQueryDatat =async(req,res,next)=>{
+   const result= await MerchantQuery.aggregate([
+      {
+         $match:{
+            MerchantId: mongoose.Types.ObjectId(req.data.user._id)
+         }
+      },
+      {
+         $lookup:{
+            from:'products',
+            localField:'ProductId',
+            foreignField:'Property.value',
+            as:'Project'
+         }
+      }
+   ])
+   if(!result)  return next(new Error('data is not getting',500))
+   res.status(200).send(result)
 }
 
 
