@@ -26,7 +26,7 @@ Merchantrouter.route('/merchant-query').post(isAuthenticated,Mechant.AddMerchant
 Merchantrouter.route('/merchant-query/:id').get(isAuthenticated,Mechant.MerchantQueryGetOne).patch(isAuthenticated,Mechant.MerchantQueryUpdateOne)
 
 
-Merchantrouter.route('/client-query-information').get(isAuthenticated,Mechant.MerchantQueryGetOne)
+Merchantrouter.route('/client-query-information').get(isAuthenticated,Mechant.ClientQUeryMechantData)
 
 
 
