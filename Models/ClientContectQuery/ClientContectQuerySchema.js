@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const validator = require("validator");
 const ProductSchema = require("../Product/ProductSchema");
+const MerchantSchema =require('../Merchant/UserSchema')
 
 
 const ClientContectQuerySchema =new Schema({
@@ -9,6 +10,10 @@ const ClientContectQuerySchema =new Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref:'ProductSchema'
       },
+      Merchant:[{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'MerchantSchema'
+    }],
       name: {
         type: String,
         required: [true, "Please tell us your name"],

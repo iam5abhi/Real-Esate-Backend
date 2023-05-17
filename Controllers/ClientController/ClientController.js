@@ -26,7 +26,8 @@ exports.AddClientInfo=async(req,res,next)=>{
     ProductId:req.body.ProductId,
     name:req.body.name,
     email:req.body.email,
-    phoneNumber:req.body.phoneNumber
+    phoneNumber:req.body.phoneNumber,
+    Merchant:req.body.Merchant
   }
   console.log(Clientinformation)
   const data =await ClientContectQuerySchema.create(Clientinformation)
