@@ -231,17 +231,24 @@ exports.ClientQUeryMechantData =async(req,res,next)=>{
  const data = await  ClientContectQueryModel.aggregate([
    {
       $match:{
-         $elemMatch:{Merchant:mongoose.Types.ObjectId(req.data.user._id)}
+         Merchant:mongoose.Types.ObjectId(req.data.user._id)
       }
    },
    {
       $lookup:{
          from:'products',
-         localField:'_id',
-         foreignField:'ProductId',
+         localField:'ProductId',
+         foreignField:'_id',
          as:"Projects"
       }
+   },
+  {
+   $project:{
+      _id:0,
+      ProductId:0,
+      Merchant:0
    }
+  }
  ])
  if(!data)  return next(new Error('data is not getting',500))
  res.status(200).send(data)
