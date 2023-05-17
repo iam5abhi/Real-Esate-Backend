@@ -231,7 +231,7 @@ exports.ClientQUeryMechantData =async(req,res,next)=>{
  const data = await  ClientContectQueryModel.aggregate([
    {
       $match:{
-         $elemMatch:mongoose.Types.ObjectId(req.data.user._id)
+         $elemMatch:{Merchant:mongoose.Types.ObjectId(req.data.user._id)}
       }
    },
    {
