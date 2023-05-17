@@ -137,7 +137,7 @@ exports.getAllProduct =async(req,res,next)=>{
 }
 
 exports.SubscribeProduct =async(req,res,next)=>{
-   const data = await ProductModel.updateOne({_id:req.params.id},{$set:{MerchantId:req.data.user._id}},{$$currentDate:{date:true}})
+   const data = await ProductModel.updateOne({_id:req.params.id},{$push:{MerchantId:req.data.user._id}},{$$currentDate:{date:true}})
    if(!data) return next(new Error('Data Is Not Available'))
    res.status(200).send({message:'Send Data Sucessfully',data:data})
 }
@@ -148,6 +148,8 @@ exports.UnSubscribeProduct =async(req,res,next)=>{
    if(!data) return next(new Error('Data Is Not Available'))
    res.status(200).send({message:'Send Data Sucessfully',data:data})
 }
+
+
 
 
 

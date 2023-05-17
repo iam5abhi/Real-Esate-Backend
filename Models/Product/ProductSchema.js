@@ -4,10 +4,10 @@ const MerchantSchema = require('../Merchant/UserSchema')
 const Property =require('../Property/PropertySchema')
 
 const ProductSchema = new Schema({
-    MerchantId: {
+    MerchantId: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: MerchantSchema,
-    },
+    }],
      PropertId:{
         type: mongoose.Schema.Types.ObjectId,
         ref: Property,
@@ -35,7 +35,7 @@ const ProductSchema = new Schema({
     propertystatus: {
         type: String,
         enum: ["active", "deactive"],
-            default: "active",
+        default: "active",
     },
 });
 
