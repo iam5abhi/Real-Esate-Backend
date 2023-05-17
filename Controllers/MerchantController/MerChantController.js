@@ -9,6 +9,7 @@ const {getDate,expireDate}=require('../../Features/Date/getDate')
 const ProductModel = require('../../Models/Product/ProductSchema')
 const MerchantQuery =require('../../Models/MerchantQuery/MerchantQuery')
 const mongoose=require('mongoose')
+const ClientContectQueryModel =require('../../Models/ClientContectQuery/ClientContectQuerySchema')
 
 const CatchAsyncHandler =require('../../Middleware/Error/CatchAsyncHandler')
 const PaymentModel=require('../../Models/Payment/Payment')
@@ -222,5 +223,28 @@ exports.MerchantQueryUpdateOne=async(req,res,next)=>{
    res.status(200).send(UpdatedData)
 }
 
+
+
+
+
+exports.ClientQUeryMechantData =async(req,res,next)=>{
+ const data = await  ClientContectQueryModel.aggregate([
+   {
+      $match:{
+         $elemMatch:mongoose.Types.ObjectId(req.data.user._id)
+      }
+   },
+   {
+      $lookup:{
+         from:'products',
+         localField:'_id',
+         foreignField:'ProductId',
+         as:"Projects"
+      }
+   }
+ ])
+ if(!data)  return next(new Error('data is not getting',500))
+ res.status(200).send(data)
+}
 
 
