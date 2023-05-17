@@ -144,7 +144,7 @@ exports.SubscribeProduct =async(req,res,next)=>{
 
 
 exports.UnSubscribeProduct =async(req,res,next)=>{
-   const data = await ProductModel.updateOne({_id:req.params.id},{$pull:{MerchantId:req.data.user._id}})
+   const data = await ProductModel.updateOne({_id:req.params.id},{$addToSet:{MerchantId:req.data.user._id}})
    if(!data) return next(new Error('Data Is Not Available'))
    res.status(200).send({message:'Send Data Sucessfully',data:data})
 }
